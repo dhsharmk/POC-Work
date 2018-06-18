@@ -1,8 +1,10 @@
 package com.poc.controllers;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -72,16 +74,15 @@ public class ItemController extends HttpServlet {
 
 		// read User info from form data
 		String items = request.getParameter("input-items");
+		String cname = request.getParameter("customerName");
+		String cmob = request.getParameter("customerMobile");
 		HttpSession session = request.getSession();
 		String user = (String) session.getAttribute("CURRENT_USER_EMAIL");
 		String stuff = null, quantity = null, unit = null;
 
 		items = items.trim(); 					// Remove whitespaces from beginning and ending
-		System.out.println(items);
 		items = items.replace("( )+", " "); 	// Change multiple spaces to single space between words
-		System.out.println(items);
 		String[] itemsArray = items.split(" "); // Convert string to Array
-		System.out.println(itemsArray);
 		try {
 			if (itemsArray.length % 3 == 0) {
 				for (int i = 0; i < itemsArray.length - 2; i = i + 3) {
@@ -89,7 +90,7 @@ public class ItemController extends HttpServlet {
 					quantity = itemsArray[i + 1];
 					unit = itemsArray[i + 2];
 
-					item = new Item(user, unit, quantity, stuff);
+					item = new Item(user, cname, cmob, unit, quantity, stuff);
 
 					// add the User to the database
 					ItemDbUtil.addItems(item);
@@ -103,11 +104,21 @@ public class ItemController extends HttpServlet {
 		}
 	}
 
-	private void listItems(HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+	private void listItems(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+		HttpSession session = request.getSession();
+		String user = (String) session.getAttribute("CURRENT_USER_EMAIL");
+		
+		// get students from db util
+		List<Item> items = ItemDbUtil.getItems(user);
+
+		// add students to the request
+		request.setAttribute("ITEM_LIST", items);
+
+		// send to JSP page (view)
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-items.jsp");
+		dispatcher.forward(request, response);
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

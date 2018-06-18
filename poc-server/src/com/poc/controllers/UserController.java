@@ -157,10 +157,7 @@ public class UserController extends HttpServlet {
 
 			// perform update on database
 			UserDbUtil.updateUser(theUser);
-
-			// send to jsp page: update-User-form.jsp
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect("user-login.jsp");
 		} else {
 			response.sendRedirect("user-login.jsp");
 		}

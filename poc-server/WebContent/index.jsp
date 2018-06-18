@@ -20,9 +20,6 @@
 		<div class="text-center my-2">
 			<a href="user-login.jsp" class="btn btn-primary">Log In</a>
 		</div>
-		<div class="text-center my-2">
-			<a href="user-update.jsp" class="btn btn-primary">Update Profile</a>
-		</div>
 	</div>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

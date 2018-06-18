@@ -2,23 +2,42 @@ package com.poc.models;
 
 public class Item {
 	private String user;
+	private String cname;
+	private String cmob;
 	private String unit;
 	private String quantity;
 	private String stuff;
 	private String time;
+	
 	public Item(String user, String quantity, String unit, String stuff, String time) {
-    		this.user = user;
+    	this.user = user;
 		this.unit = unit;
 		this.quantity = quantity;
 		this.stuff = stuff;
 		this.time = time;
 	}
-	public Item(String user, String unit, String quantity, String stuff) {
+	
+	public Item(String user, String cname, String cmob, String unit, String quantity, String stuff) {
 		super();
 		this.user = user;
+		this.cname = cname;
+		this.cmob = cmob;
 		this.unit = unit;
 		this.quantity = quantity;
 		this.stuff = stuff;
+	}
+	
+	public String getCname() {
+		return cname;
+	}
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+	public String getCmob() {
+		return cmob;
+	}
+	public void setCmob(String cmob) {
+		this.cmob = cmob;
 	}
 	public String getUser() {
 		return user;

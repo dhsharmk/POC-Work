@@ -14,23 +14,27 @@
 </head>
 <body>
 	<div class="container text-center">
-		<h1>
+		<h1 class="my-2">
 			Welcome
 			<%=session.getAttribute("CURRENT_USER_FIRST_NAME")%></h1>
 		<div class="text-center my-2">
-			<a href="user-update-profile.jsp" class="btn btn-primary">Update
+			<a href="user-update-profile.jsp" class="btn btn-primary my-2">Update
 				Profile</a>
 			<form action="UserController" method="GET">
 				<input type="hidden" name="command" value="LOGOUT">
-				<button type="submit" class="btn btn-primary">LOG OUT</button>
+				<button type="submit" class="btn btn-primary my-2">LOG OUT</button>
 			</form>
 		</div>
 		<form action="ItemController" method="GET">
 			<div class="container my-3" id="input-div">
 				<p>example: Atta 10 kilo Shakkar 5 kilo ...</p>
-				<input type="hidden" name="command"value="SAVE">
-				<textarea class="form-control" name="input-items" id="input-items"
-					placeholder="Enter here"></textarea>
+				<input type="hidden" name="command" value="SAVE"> <input
+					type="text" class="form-control my-1" name="customerName"
+					placeholder="Customer's Name"> <input type="number"
+					class="form-control my-1" name="customerMobile"
+					placeholder="Customer's Mobile Number">
+				<textarea class="form-control my-1" name="input-items"
+					id="input-items" placeholder="Enter here"></textarea>
 			</div>
 			<div id="preview-items">
 				<table id="preview-table" class="table">
@@ -38,19 +42,14 @@
 				</table>
 				<h1 id="error"></h1>
 			</div>
-			<div class="row">
-				<div class="col-md-4 col-sm-4">
-					<a class="btn btn-primary text-white" id="preview-btn">Preview</a>
-				</div>
+			<button class="btn btn-primary my-2" type="submit">Save</button>
+		</form>
 
-				<div class="col-md-4 col-sm-4">
-					<button class="btn btn-primary" type="submit">Save</button>
-				</div>	
-				
-				<div class="col-md-4 col-sm-4">
-					<a class="btn btn-primary text-white">List</a>
-				</div>
-			</div>
+		<button class="btn btn-primary text-white my-2" id="preview-btn">Preview</button>
+		
+		<form action="ItemController" method="GET">
+			<input type="hidden" name="command" value="LIST">
+			<button class="btn btn-primary my-2">List</button>
 		</form>
 
 	</div>
