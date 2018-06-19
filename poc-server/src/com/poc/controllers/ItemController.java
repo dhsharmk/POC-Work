@@ -78,19 +78,20 @@ public class ItemController extends HttpServlet {
 		String cmob = request.getParameter("customerMobile");
 		HttpSession session = request.getSession();
 		String user = (String) session.getAttribute("CURRENT_USER_EMAIL");
-		String stuff = null, quantity = null, unit = null;
+		String stuff = null, quantity = null, unit = null, price = null;
 
 		items = items.trim(); 					// Remove whitespaces from beginning and ending
 		items = items.replace("( )+", " "); 	// Change multiple spaces to single space between words
 		String[] itemsArray = items.split(" "); // Convert string to Array
 		try {
-			if (itemsArray.length % 3 == 0) {
-				for (int i = 0; i < itemsArray.length - 2; i = i + 3) {
+			if (itemsArray.length % 5 == 0) {
+				for (int i = 0; i < itemsArray.length; i = i + 5) {
 					stuff = itemsArray[i];
 					quantity = itemsArray[i + 1];
 					unit = itemsArray[i + 2];
+					price = itemsArray[i + 3];
 
-					item = new Item(user, cname, cmob, unit, quantity, stuff);
+					item = new Item(user, cname, cmob, unit, quantity, stuff, price);
 
 					// add the User to the database
 					ItemDbUtil.addItems(item);

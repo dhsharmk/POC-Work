@@ -46,8 +46,7 @@ public class UserDbUtil {
 			myConn = dataSource.getConnection();
 
 			// create sql for insert
-			String sql = "insert into users " + "(first_name, last_name, email, mobile, password) "
-					+ "values (?, ?, ?, ?, ?)";
+			String sql = "insert into users (first_name, last_name, email, mobile, password) values (?, ?, ?, ?, ?)";
 
 			myStmt = myConn.prepareStatement(sql);
 
@@ -103,6 +102,7 @@ public class UserDbUtil {
 		ResultSet myRs = null;
 		String sql = null;
 		boolean check = false;
+		
 		try {
 			// get db connection
 			myConn = dataSource.getConnection();
@@ -173,9 +173,9 @@ public class UserDbUtil {
 				// use the studentId during construction
 				user = new User(firstName, lastName, email, mobile, password);
 			} else {
-				throw new Exception("Could not find student id: " + theUserName);
+				throw new Exception("Could not find user: " + theUserName);
 			}
-
+			
 			return user;
 		} finally {
 			// clean up JDBC objects

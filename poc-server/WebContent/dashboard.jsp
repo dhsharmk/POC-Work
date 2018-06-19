@@ -27,7 +27,7 @@
 		</div>
 		<form action="ItemController" method="GET">
 			<div class="container my-3" id="input-div">
-				<p>example: Atta 10 kilo Shakkar 5 kilo ...</p>
+				<p>example: Atta 10 kilo 50 rupye Shakkar 5 kilo 25 rupye ...</p>
 				<input type="hidden" name="command" value="SAVE"> <input
 					type="text" class="form-control my-1" name="customerName"
 					placeholder="Customer's Name"> <input type="number"
@@ -40,7 +40,7 @@
 				<table id="preview-table" class="table">
 
 				</table>
-				<h1 id="error"></h1>
+				<div id="error"></div>
 			</div>
 			<button class="btn btn-primary my-2" type="submit">Save</button>
 		</form>

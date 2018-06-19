@@ -1,10 +1,9 @@
 <Context>
 
-  <Resource name="jdbc/poc_app" 
-  			auth="Container" type="javax.sql.DataSource"
-               maxActive="20" maxIdle="5" maxWait="10000"
-               username="poc" password="iamnothere" 
-               driverClassName="com.mysql.jdbc.Driver"
-               url="jdbc:mysql://localhost:3306/poc_app?useSSL=false"/>
+	<Resource name="jdbc/poc_app" auth="Container"
+		type="javax.sql.DataSource" maxActive="20" maxIdle="5" maxWait="10000"
+		username="poc" password="iamnothere"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/poc_app?useSSL=false" />
 
 </Context>

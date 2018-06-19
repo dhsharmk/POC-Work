@@ -25,6 +25,7 @@
 					<th>Stuff</th>
 					<th>Quantity</th>
 					<th>Unit</th>
+					<th>Price</th>
 				</tr>
 
 				<c:forEach var="tempItem" items="${ITEM_LIST}">
@@ -34,6 +35,7 @@
 						<td>${tempItem.stuff}</td>
 						<td>${tempItem.quantity}</td>
 						<td>${tempItem.unit}</td>
+						<td>Rs. ${tempItem.price}</td>
 					</tr>
 
 				</c:forEach>

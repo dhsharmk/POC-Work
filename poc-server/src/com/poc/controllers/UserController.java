@@ -44,7 +44,7 @@ public class UserController extends HttpServlet {
 
 			// if the command is missing, then default to listing Users
 			if (theCommand == null) {
-				theCommand = "LOAD";
+				theCommand = "";
 			}
 
 			// route to the appropriate method
@@ -118,6 +118,7 @@ public class UserController extends HttpServlet {
 
 		// create User object
 		User theUser = new User(username, username, password);
+
 		// check user in database
 		boolean check = UserDbUtil.checkUser(theUser);
 		if (check) {

@@ -49,7 +49,7 @@ public class ItemDbUtil {
 			myConn = dataSource.getConnection();
 
 			// create sql for insert
-			String sql = "insert into items " + "(user, cname, cmob, unit, quantity, stuff) " + "values (?, ?, ?, ?, ?, ?)";
+			String sql = "insert into items (user, cname, cmob, unit, quantity, stuff, price) values (?, ?, ?, ?, ?, ?, ?)";
 
 			myStmt = myConn.prepareStatement(sql);
 
@@ -60,6 +60,7 @@ public class ItemDbUtil {
 			myStmt.setString(4, theItem.getUnit());
 			myStmt.setString(5, theItem.getQuantity());
 			myStmt.setString(6, theItem.getStuff());
+			myStmt.setString(7, theItem.getPrice());
 
 			// execute sql insert
 			myStmt.execute();
@@ -101,9 +102,10 @@ public class ItemDbUtil {
 				String stuff = myRs.getString("stuff");
 				String quantity = myRs.getString("quantity");
 				String unit = myRs.getString("unit");
+				String price = myRs.getString("price");
 
 				// create new student object
-				Item tempItem = new Item(user, cname, cmob, unit, quantity, stuff);
+				Item tempItem = new Item(user, cname, cmob, unit, quantity, stuff, price);
 
 				// add it to the list of students
 				items.add(tempItem);
