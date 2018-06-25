@@ -1,4 +1,5 @@
 <!doctype html>
+<%@page import="java.util.Date"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
@@ -14,21 +15,27 @@
 </head>
 <body>
 	<div class="container text-center">
-		<h1 class="my-2">
-			Welcome
-			<%=session.getAttribute("CURRENT_USER_FIRST_NAME")%></h1>
-		<div class="text-center my-2">
-			<a href="user-update-profile.jsp" class="btn btn-primary my-2">Update
-				Profile</a>
-			<form action="UserController" method="GET">
-				<input type="hidden" name="command" value="LOGOUT">
-				<button type="submit" class="btn btn-primary my-2">LOG OUT</button>
-			</form>
+		<div class="row">
+			<div class="col-4">
+				<h1 class="my-2">Welcome <%=session.getAttribute("CURRENT_USER_FIRST_NAME")%></h1>	
+			</div>
+			<div class="col-4">
+				<a href="user-update-profile.jsp" class="btn btn-primary my-2">Update Profile</a>
+			</div>
+			<div class="col-4">
+				<form action="UserController" method="GET">
+					<input type="hidden" name="command" value="LOGOUT">
+					<button type="submit" class="btn btn-primary my-2">Log Out</button>
+				</form>
+			</div>
 		</div>
+		
+		<hr>
+		
 		<form action="ItemController" method="GET">
 			<div class="container my-3" id="input-div">
-				<p>example: Atta 10 kilo 50 rupye Shakkar 5 kilo 25 rupye ...</p>
-				<input type="hidden" name="command" value="SAVE"> <input
+				<p>Example: Atta 10 kilo 50 rupye Shakkar 5 kilo 25 rupye ...</p>
+				<input type="hidden" name="command" value="PREVIEW"> <input
 					type="text" class="form-control my-1" name="customerName"
 					placeholder="Customer's Name"> <input type="number"
 					class="form-control my-1" name="customerMobile"
@@ -36,19 +43,17 @@
 				<textarea class="form-control my-1" name="input-items"
 					id="input-items" placeholder="Enter here"></textarea>
 			</div>
-			<div id="preview-items">
-				<table id="preview-table" class="table">
-
-				</table>
-				<div id="error"></div>
+			<div id="btn-preview">
+				<button class="btn btn-primary my-2" type="submit">Preview</button>			
 			</div>
-			<button class="btn btn-primary my-2" type="submit">Save</button>
 		</form>
-
-		<button class="btn btn-primary text-white my-2" id="preview-btn">Preview</button>
+		
+		<hr>
 		
 		<form action="ItemController" method="GET">
+			<h1 class="text-center">View List</h1>
 			<input type="hidden" name="command" value="LIST">
+			<input class="form-control" type="date" value="<%= new java.util.Date() %>" name="date" required>
 			<button class="btn btn-primary my-2">List</button>
 		</form>
 

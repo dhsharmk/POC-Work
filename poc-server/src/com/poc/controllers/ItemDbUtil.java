@@ -70,7 +70,7 @@ public class ItemDbUtil {
 		}
 	}
 
-	public List<Item> getItems(String theUser) throws Exception {
+	public List<Item> getItems(String theUser, String date) throws Exception {
 		String usr = theUser.replaceAll("[-+.^:,]","");
 		List<Item> items = new ArrayList<>();
 
@@ -83,11 +83,12 @@ public class ItemDbUtil {
 			myConn = dataSource.getConnection();
 
 			// create sql statement
-			String sql = "SELECT * FROM `items` where DATE(timestamp) = CURDATE() and user=?";
+			String sql = "SELECT * FROM `items` where DATE(timestamp)=? and user=?";
 
 			myStmt = myConn.prepareStatement(sql);
 			
-			myStmt.setString(1, usr);
+			myStmt.setString(1, date);
+			myStmt.setString(2, usr);
 
 			// execute query
 			myRs = myStmt.executeQuery();

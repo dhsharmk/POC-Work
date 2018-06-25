@@ -9,13 +9,23 @@ public class Item {
 	private String stuff;
 	private String price;
 	private String time;
-
+	
 	public Item(String user, String quantity, String unit, String stuff, String time) {
 		this.user = user;
 		this.unit = unit;
 		this.quantity = quantity;
 		this.stuff = stuff;
 		this.time = time;
+	}
+
+	public Item(String cname, String cmob, String unit, String quantity, String stuff, String price) {
+		super();
+		this.cname = cname;
+		this.cmob = cmob;
+		this.unit = unit;
+		this.quantity = quantity;
+		this.stuff = stuff;
+		this.price = price;
 	}
 
 	public Item(String user, String cname, String cmob, String unit, String quantity, String stuff, String price) {
