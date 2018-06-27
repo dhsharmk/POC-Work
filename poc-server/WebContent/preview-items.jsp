@@ -10,42 +10,36 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
-		<title>POC App</title>
+		<title>Items Preview</title>
 	</head>
 
 	<body>
-		<div id="container">
+		<div class="container">
 
-			<div id="content">
 				<table class="table">
 
 					<tr>
-						<th>Customer Name</th>
-						<th>Customer Mobile</th>
+						<th>S No.</th>
 						<th>Stuff</th>
 						<th>Quantity</th>
 						<th>Unit</th>
 						<th>Price</th>
 					</tr>
-
-					<c:forEach var="tempItem" items="${ITEMS_PREVIEW}">
+					<c:forEach var="tempItem" items="${ITEMS_PREVIEW}" varStatus="loop">
 						<tr>
-							<td>${tempItem.cname}</td>
-							<td>${tempItem.cmob}</td>
+							<td>${loop.count}</td>
 							<td>${tempItem.stuff}</td>
 							<td>${tempItem.quantity}</td>
 							<td>${tempItem.unit}</td>
 							<td>Rs. ${tempItem.price}</td>
 						</tr>
-
 					</c:forEach>
 					<tr>
 						<td></td>
 						<td></td>
 						<td></td>
-						<td></td>
 						<td>Total</td>
-						<td><%= request.getAttribute("TOTAL_AMOUNT")%></td>
+						<td><%= request.getAttribute("TOTAL_AMOUNT") %></td>
 					</tr>
 				</table>
 
@@ -62,8 +56,6 @@
 
 				<button onclick="window.location.href='dashboard.jsp'; return false;" class="btn btn-primary mx-auto">Back</button>
 			</div>
-
-		</div>
 
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->

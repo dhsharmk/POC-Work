@@ -64,6 +64,25 @@ public class ItemController extends HttpServlet {
 
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			// read the "command" parameter
+			String theCommand = request.getParameter("command");
+
+			// route to the appropriate method
+			switch (theCommand) {
+			case "SAVE":
+				saveItems(request, response);
+				break;
+			}
+
+		} catch (Exception exc) {
+			throw new ServletException(exc);
+		}
+
+	}
+
 	private void previewItems(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		List<Item> itemslist = new ArrayList<>();
 		Item item = null;
@@ -96,8 +115,6 @@ public class ItemController extends HttpServlet {
 			}
 				// add items to the request
 				request.setAttribute("ITEMS_PREVIEW", itemslist);
-				request.setAttribute("CUSTOMER_NAME", cname);
-				request.setAttribute("CUSTOMER_MOB", cmob);
 				request.setAttribute("INPUT_ITEMS", items);
 				request.setAttribute("TOTAL_AMOUNT", total);
 
@@ -107,25 +124,6 @@ public class ItemController extends HttpServlet {
 		} catch (Exception exc) {
 			throw new ServletException(exc);
 		}
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		try {
-			// read the "command" parameter
-			String theCommand = request.getParameter("command");
-
-			// route to the appropriate method
-			switch (theCommand) {
-			case "SAVE":
-				saveItems(request, response);
-				break;
-			}
-
-		} catch (Exception exc) {
-			throw new ServletException(exc);
-		}
-
 	}
 
 	private void saveItems(HttpServletRequest request, HttpServletResponse response) throws Exception {

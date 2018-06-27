@@ -10,13 +10,12 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 
-<title>POC App</title>
+<title>Items List</title>
 </head>
 
 <body>
-	<div id="container">
+	<div class="container">
 
-		<div id="content">
 			<table class="table">
 
 				<tr>
@@ -42,10 +41,8 @@
 
 			</table>
 			<button onclick="window.location.href='dashboard.jsp'; return false;"
-				class="btn btn-primary mx-auto">Back</button>
+				class="btn btn-primary">Back</button>
 		</div>
-
-	</div>
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

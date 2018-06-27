@@ -1,5 +1,4 @@
 <!doctype html>
-<%@page import="java.util.Date"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
@@ -53,7 +52,7 @@
 		<form action="ItemController" method="GET">
 			<h1 class="text-center">View List</h1>
 			<input type="hidden" name="command" value="LIST">
-			<input class="form-control" type="date" value="<%= new java.util.Date() %>" name="date" required>
+			<input class="form-control" type="date" name="date" required>
 			<button class="btn btn-primary my-2">List</button>
 		</form>
 
