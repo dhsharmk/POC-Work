@@ -74,6 +74,9 @@ public class UserController extends HttpServlet {
 			// route to the appropriate method
 			switch (theCommand) {
 
+			case "LANGUAGE":
+				selectLanguage(request, response);
+				break;
 			case "SIGNUP":
 				addUser(request, response);
 				break;
@@ -89,6 +92,15 @@ public class UserController extends HttpServlet {
 			throw new ServletException(exc);
 		}
 
+	}
+
+	private void selectLanguage(HttpServletRequest request, HttpServletResponse response) {
+		//Get user from session
+		
+		//add language to user in data base
+		
+		//redirect to dashboard
+		
 	}
 
 	private void addUser(HttpServletRequest request, HttpServletResponse response) throws Exception {

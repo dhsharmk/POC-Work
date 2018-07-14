@@ -115,6 +115,8 @@ public class ItemController extends HttpServlet {
 			}
 				// add items to the request
 				request.setAttribute("ITEMS_PREVIEW", itemslist);
+				request.setAttribute("CUSTOMER_NAME", cname);
+				request.setAttribute("CUSTOMER_MOB", cmob);
 				request.setAttribute("INPUT_ITEMS", items);
 				request.setAttribute("TOTAL_AMOUNT", total);
 

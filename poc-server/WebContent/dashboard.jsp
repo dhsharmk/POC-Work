@@ -15,13 +15,13 @@
 <body>
 	<div class="container text-center">
 		<div class="row">
-			<div class="col-4">
+			<div class="col-md-4">
 				<h1 class="my-2">Welcome <%=session.getAttribute("CURRENT_USER_FIRST_NAME")%></h1>	
 			</div>
-			<div class="col-4">
+			<div class="col-md-4">
 				<a href="user-update-profile.jsp" class="btn btn-primary my-2">Update Profile</a>
 			</div>
-			<div class="col-4">
+			<div class="col-md-4">
 				<form action="UserController" method="GET">
 					<input type="hidden" name="command" value="LOGOUT">
 					<button type="submit" class="btn btn-primary my-2">Log Out</button>
