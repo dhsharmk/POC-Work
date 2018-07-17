@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import com.poc.models.Item;
 import com.poc.models.User;
 
 @WebServlet("/UserController")

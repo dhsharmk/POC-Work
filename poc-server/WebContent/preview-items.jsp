@@ -49,6 +49,7 @@
 						<input type="hidden" class="form-control my-1" name="customerName" placeholder="Customer's Name" value="<%= request.getAttribute("CUSTOMER_NAME") %>">
 						<input type="hidden" class="form-control my-1" name="customerMobile" placeholder="Customer's Mobile Number" value="<%= request.getAttribute("CUSTOMER_MOB") %>">
 						<input type="hidden" class="form-control my-1" name="input-items" id="input-items" placeholder="Enter here" value="<%= request.getAttribute("INPUT_ITEMS") %>">
+						<input type="number" name="paid" placeholder="Paid Amount" class="form-control" required>
 					</div>
 					<button class="btn btn-primary my-2" type="submit">Save</button>
 				</form>

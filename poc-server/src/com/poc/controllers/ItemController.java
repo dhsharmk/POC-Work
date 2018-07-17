@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import com.poc.models.Account;
 import com.poc.models.Item;
 
 /**
@@ -52,7 +53,7 @@ public class ItemController extends HttpServlet {
 			case "LIST":
 				listItems(request, response);
 				break;
-				
+
 			case "PREVIEW":
 				previewItems(request, response);
 				break;
@@ -94,8 +95,8 @@ public class ItemController extends HttpServlet {
 		String cname = request.getParameter("customerName");
 		String cmob = request.getParameter("customerMobile");
 
-		String stuff = null, quantity = null, unit = null, price = null, amount="";
-		int total=0;
+		String stuff = null, quantity = null, unit = null, price = null, amount = "";
+		int total = 0;
 
 		// convert items to array
 		String[] itemsArray = items.split(" ");
@@ -107,22 +108,22 @@ public class ItemController extends HttpServlet {
 				unit = itemsArray[i + 2];
 				price = itemsArray[i + 3];
 				amount = "" + Integer.parseInt(quantity) * Integer.parseInt(price);
-				total+= Integer.parseInt(amount);
-				
+				total += Integer.parseInt(amount);
+
 				item = new Item(cname, cmob, unit, quantity, stuff, price);
-				
+
 				itemslist.add(item);
 			}
-				// add items to the request
-				request.setAttribute("ITEMS_PREVIEW", itemslist);
-				request.setAttribute("CUSTOMER_NAME", cname);
-				request.setAttribute("CUSTOMER_MOB", cmob);
-				request.setAttribute("INPUT_ITEMS", items);
-				request.setAttribute("TOTAL_AMOUNT", total);
+			// add items to the request
+			request.setAttribute("ITEMS_PREVIEW", itemslist);
+			request.setAttribute("CUSTOMER_NAME", cname);
+			request.setAttribute("CUSTOMER_MOB", cmob);
+			request.setAttribute("INPUT_ITEMS", items);
+			request.setAttribute("TOTAL_AMOUNT", total);
 
-				// send to JSP page (view)
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/preview-items.jsp");
-				dispatcher.forward(request, response);
+			// send to JSP page (view)
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/preview-items.jsp");
+			dispatcher.forward(request, response);
 		} catch (Exception exc) {
 			throw new ServletException(exc);
 		}
@@ -131,10 +132,14 @@ public class ItemController extends HttpServlet {
 	private void saveItems(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		Item item = null;
+		Account account = null;
+		String amount = null;
+		int total = 0;
 
 		// read user input from form data
 		String str = request.getParameter("input-items");
 		String items = convertStr(str);
+		String paid = request.getParameter("paid");
 
 		String cname = request.getParameter("customerName");
 		String cmob = request.getParameter("customerMobile");
@@ -154,11 +159,18 @@ public class ItemController extends HttpServlet {
 				unit = itemsArray[i + 2];
 				price = itemsArray[i + 3];
 
+				amount = "" + Integer.parseInt(quantity) * Integer.parseInt(price);
+				total += Integer.parseInt(amount);
+
 				item = new Item(user, cname, cmob, unit, quantity, stuff, price);
 
 				// add the User to the database
 				ItemDbUtil.addItems(item);
 			}
+			
+			int os = total - Integer.parseInt(paid);
+			account = new Account(user, cname, cmob, os);
+			ItemDbUtil.addAccount(account);
 		} catch (Exception exc) {
 			throw new ServletException(exc);
 		} finally {
@@ -192,7 +204,7 @@ public class ItemController extends HttpServlet {
 						strArray[i] = temp;
 					}
 				}
-				c=true;
+				c = true;
 			}
 			str = String.join(" ", strArray);
 		}
@@ -215,6 +227,17 @@ public class ItemController extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-items.jsp");
 		dispatcher.forward(request, response);
 	}
+	
+	private void listAccounts(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
+		HttpSession session = request.getSession();
+		String user = (String) session.getAttribute("CURRENT_USER_EMAIL");
+
+		// get students from db util
+		List<Account> Accounts = ItemDbUtil.getAccounts(user);
+
+		// add students to the request
+		session.setAttribute("ACCOUNT_LIST", Accounts);
+	}
 
 }

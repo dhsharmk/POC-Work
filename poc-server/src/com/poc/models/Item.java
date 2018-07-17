@@ -9,6 +9,7 @@ public class Item {
 	private String stuff;
 	private String price;
 	private String time;
+	private String outstanding;
 	
 	public Item(String user, String quantity, String unit, String stuff, String time) {
 		this.user = user;
@@ -16,6 +17,14 @@ public class Item {
 		this.quantity = quantity;
 		this.stuff = stuff;
 		this.time = time;
+	}
+	
+	public Item(String user, String cname, String cmob, String outstanding) {
+		super();
+		this.user = user;
+		this.cname = cname;
+		this.cmob = cmob;
+		this.outstanding = outstanding;
 	}
 
 	public Item(String cname, String cmob, String unit, String quantity, String stuff, String price) {
@@ -97,6 +106,14 @@ public class Item {
 
 	public String getTime() {
 		return time;
+	}
+	
+	public String getOutstanding() {
+		return outstanding;
+	}
+
+	public void setOutstanding(String outstanding) {
+		this.outstanding = outstanding;
 	}
 
 	public void setTime(String time) {
