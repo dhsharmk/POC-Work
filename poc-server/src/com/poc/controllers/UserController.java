@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
-import com.poc.models.Item;
 import com.poc.models.User;
 
 @WebServlet("/UserController")
@@ -144,6 +143,8 @@ public class UserController extends HttpServlet {
 			session.setAttribute("CURRENT_USER_EMAIL", theUser.getEmail());
 			session.setAttribute("CURRENT_USER_MOBILE", theUser.getMobile());
 			session.setAttribute("CURRENT_USER_PASSWORD", theUser.getPassword());
+			
+			
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/dashboard.jsp");
 			dispatcher.forward(request, response);
