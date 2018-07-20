@@ -196,5 +196,53 @@ public class ItemDbUtil {
 		}
 	}
 
+	public List<Item> getAccountItems(String theUser, String cusmob) throws Exception {
+		String usr = theUser.replaceAll("[-+.^:,]","");
+		List<Item> items = new ArrayList<>();
+
+		Connection myConn = null;
+		PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+
+		try {
+			// get a connection
+			myConn = dataSource.getConnection();
+
+			// create sql statement
+			String sql = "SELECT * FROM `items` where cmob=? and user=?";
+
+			myStmt = myConn.prepareStatement(sql);
+			
+			myStmt.setString(1, cusmob);
+			myStmt.setString(2, usr);
+
+			// execute query
+			myRs = myStmt.executeQuery();
+
+			// process result set
+			while (myRs.next()) {
+
+				// retrieve data from result set row
+				String user = myRs.getString("user");
+				String cname = myRs.getString("cname");
+				String cmob = myRs.getString("cmob");
+				String stuff = myRs.getString("stuff");
+				String quantity = myRs.getString("quantity");
+				String unit = myRs.getString("unit");
+				String price = myRs.getString("price");
+
+				// create new student object
+				Item tempItem = new Item(user, cname, cmob, unit, quantity, stuff, price);
+
+				// add it to the list of students
+				items.add(tempItem);
+			}
+
+			return items;
+		} finally {
+			// close JDBC objects
+			close(myConn, myStmt, myRs);
+		}
+	}
 
 }

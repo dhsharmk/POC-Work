@@ -53,6 +53,14 @@ public class ItemController extends HttpServlet {
 			case "LIST":
 				listItems(request, response);
 				break;
+				
+			case "LISTACCOUNTS":
+				listAccounts(request, response);
+				break;
+				
+			case "VIEWACCOUNT":
+				viewAccount(request, response);
+				break;
 
 			case "PREVIEW":
 				previewItems(request, response);
@@ -238,6 +246,27 @@ public class ItemController extends HttpServlet {
 
 		// add students to the request
 		session.setAttribute("ACCOUNT_LIST", Accounts);
+		
+		// send to JSP page (view)
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-accounts.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void viewAccount(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
+		HttpSession session = request.getSession();
+		String user = (String) session.getAttribute("CURRENT_USER_EMAIL");
+		String cmob = request.getParameter("mobile");
+
+		// get students from db util
+		List<Item> items = ItemDbUtil.getAccountItems(user, cmob);
+
+		// add students to the request
+		request.setAttribute("ITEM_LIST", items);
+
+		// send to JSP page (view)
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/view-account.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }
