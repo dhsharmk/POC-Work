@@ -2,6 +2,7 @@
 $(document).ready(function() {
 	$("#password").keyup(validate);
 	$("#cpassword").keyup(validate);
+    $("textarea").text("Fifth Avenue, New York City");
 });
 
 function validate() {

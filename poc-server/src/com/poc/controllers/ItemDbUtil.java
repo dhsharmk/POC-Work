@@ -245,4 +245,39 @@ public class ItemDbUtil {
 		}
 	}
 
+	public void deleteAccount(String user, String cmob) throws SQLException {
+		user = user.replaceAll("[-+.^:,]","");
+		Connection myConn = null;
+		Connection myConn1 = null;
+		PreparedStatement myStmt = null;
+		PreparedStatement myStmt1 = null;
+
+		try {
+			// get db connection
+			myConn = dataSource.getConnection();
+			myConn1 = dataSource.getConnection();
+
+			// create sql for insert
+			String sql = "delete from accounts where user=? and cmob=?";
+			String sql1 = "delete from items where user=? and cmob=?";
+
+			myStmt = myConn.prepareStatement(sql);
+			myStmt1 = myConn1.prepareStatement(sql1);
+
+			// set the param values for the User
+			myStmt.setString(1, user);
+			myStmt.setString(2, cmob);
+			myStmt1.setString(1, user);
+			myStmt1.setString(2, cmob);
+
+			// execute sql insert
+			myStmt.execute();
+			myStmt1.execute();
+		} finally {
+			// clean up JDBC objects
+			close(myConn, myStmt, null);
+			close(myConn1, myStmt1, null);
+		}
+	}
+
 }

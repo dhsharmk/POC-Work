@@ -53,11 +53,11 @@ public class ItemController extends HttpServlet {
 			case "LIST":
 				listItems(request, response);
 				break;
-				
+
 			case "LISTACCOUNTS":
 				listAccounts(request, response);
 				break;
-				
+
 			case "VIEWACCOUNT":
 				viewAccount(request, response);
 				break;
@@ -84,6 +84,11 @@ public class ItemController extends HttpServlet {
 			case "SAVE":
 				saveItems(request, response);
 				break;
+
+			case "DELETEACCOUNT":
+				deleteAccount(request, response);
+				break;
+
 			}
 
 		} catch (Exception exc) {
@@ -145,8 +150,7 @@ public class ItemController extends HttpServlet {
 		int total = 0;
 
 		// read user input from form data
-		String str = request.getParameter("input-items");
-		String items = convertStr(str);
+		String items = request.getParameter("input-items");
 		String paid = request.getParameter("paid");
 
 		String cname = request.getParameter("customerName");
@@ -155,17 +159,22 @@ public class ItemController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String user = (String) session.getAttribute("CURRENT_USER_EMAIL");
 
-		String stuff = null, quantity = null, unit = null, price = null;
+		String stuff = null, quantity = null, unit = null, price = null, sc = null, qc = null, uc = null, pc = null;
 
 		// convert items to array
 		String[] itemsArray = items.split(" ");
-
+		int j = 1;
 		try {
 			for (int i = 0; i < itemsArray.length - 2; i = i + 5) {
-				stuff = itemsArray[i];
-				quantity = itemsArray[i + 1];
-				unit = itemsArray[i + 2];
-				price = itemsArray[i + 3];
+				sc = "stuff" + j;
+				qc = "quantity" + j;
+				uc = "unit" + j;
+				pc = "price" + j;
+				j++;
+				stuff = request.getParameter(sc);
+				quantity = request.getParameter(qc);
+				unit = request.getParameter(uc);
+				price = request.getParameter(pc);
 
 				amount = "" + Integer.parseInt(quantity) * Integer.parseInt(price);
 				total += Integer.parseInt(amount);
@@ -175,7 +184,7 @@ public class ItemController extends HttpServlet {
 				// add the User to the database
 				ItemDbUtil.addItems(item);
 			}
-			
+
 			int os = total - Integer.parseInt(paid);
 			account = new Account(user, cname, cmob, os);
 			ItemDbUtil.addAccount(account);
@@ -235,7 +244,7 @@ public class ItemController extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-items.jsp");
 		dispatcher.forward(request, response);
 	}
-	
+
 	private void listAccounts(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		HttpSession session = request.getSession();
@@ -246,12 +255,12 @@ public class ItemController extends HttpServlet {
 
 		// add students to the request
 		session.setAttribute("ACCOUNT_LIST", Accounts);
-		
+
 		// send to JSP page (view)
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-accounts.jsp");
 		dispatcher.forward(request, response);
 	}
-	
+
 	private void viewAccount(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		HttpSession session = request.getSession();
@@ -266,6 +275,24 @@ public class ItemController extends HttpServlet {
 
 		// send to JSP page (view)
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/view-account.jsp");
+		dispatcher.forward(request, response);
+	}
+
+	private void deleteAccount(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		String user = (String) session.getAttribute("CURRENT_USER_EMAIL");
+		String cmob = request.getParameter("mobile");
+
+		ItemDbUtil.deleteAccount(user, cmob);
+
+		// get students from db util
+		List<Account> Accounts = ItemDbUtil.getAccounts(user);
+
+		// add students to the request
+		session.setAttribute("ACCOUNT_LIST", Accounts);
+
+		// send to JSP page (view)
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-accounts.jsp");
 		dispatcher.forward(request, response);
 	}
 

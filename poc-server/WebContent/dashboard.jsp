@@ -15,7 +15,7 @@
 <body>
 	<div class="container text-center">
 		<div class="row my-2">
-			<div class="col-4">
+			<div class="col-md-4">
 				<div class="list group" id="list-group">
 					<form action="ItemController" method="GET">
 						<input type="hidden" name="command" value="VIEWBILL">
@@ -25,25 +25,15 @@
 						<input type="hidden" name="command" value="LISTACCOUNTS">
 						<button class="list-group-item list-group-item-action">Accounts</button>
 					</form>
+					<a href="user-update-profile.jsp" class="list-group-item list-group-item-action">Profile</a>
 					<form action="UserController" method="GET">
 						<input type="hidden" name="command" value="LOGOUT">
 						<button class="list-group-item list-group-item-action">Logout</button>
 					</form>
 				</div>
 			</div>
-			<div class="col-8">
-				<div class="row">
-					<div class="col-md-4">
-						<h1 class="my-2">
-							Welcome
-							<%=session.getAttribute("CURRENT_USER_FIRST_NAME")%></h1>
-					</div>
-					<div class="col-md-4">
-						<a href="user-update-profile.jsp" class="btn btn-primary my-2">Update
-							Profile</a>
-					</div>
-				</div>
-
+			<div class="col-md-8">
+				<h1 class="my-2">Welcome <%=session.getAttribute("CURRENT_USER_FIRST_NAME")%></h1>
 				<hr>
 
 				<form action="ItemController" method="GET">
@@ -80,7 +70,7 @@
 	<script src="assets/js/jquery-3.3.1.slim.min.js"></script>
 	<script src="assets/js/popper.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/script.js"></script>
+	<script src="assets/js/script-dash.js"></script>
 
 </body>
 </html>

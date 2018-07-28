@@ -28,6 +28,11 @@
 								<input type="hidden" name="mobile" value="${tempAccount.cmob}">
 								<button class="btn btn-primary">View Account</button>							
 							</form>
+							<form action="ItemController" method="POST">
+								<input type="hidden" name="command" value="DELETEACCOUNT">
+								<input type="hidden" name="mobile" value="${tempAccount.cmob}">
+								<button class="btn btn-danger">DELETE Account</button>							
+							</form>
 						</div>
 					</div>
 				</div>
