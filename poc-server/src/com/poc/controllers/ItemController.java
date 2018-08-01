@@ -61,7 +61,11 @@ public class ItemController extends HttpServlet {
 			case "VIEWACCOUNT":
 				viewAccount(request, response);
 				break;
-
+				
+			case "VIEWBILL":
+				viewBill(request, response);
+				break;
+				
 			case "PREVIEW":
 				previewItems(request, response);
 				break;
@@ -71,6 +75,15 @@ public class ItemController extends HttpServlet {
 			throw new ServletException(exc);
 		}
 
+	}
+
+	private void viewBill(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			response.sendRedirect("dashboard.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
