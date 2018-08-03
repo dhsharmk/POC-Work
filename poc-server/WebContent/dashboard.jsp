@@ -59,7 +59,7 @@
 					id="input-items" placeholder="Enter here"></textarea>
 			</div>
 			<div id="btn-preview">
-				<button type="button" class="btn btn-primary my-2" type="submit">Preview</button>
+				<button class="btn btn-primary my-2" type="submit">Preview</button>
 			</div>
 		</form>
 

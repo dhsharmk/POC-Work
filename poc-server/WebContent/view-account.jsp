@@ -50,8 +50,6 @@
 			<table class="table">
 
 				<tr>
-					<th>Customer Name</th>
-					<th>Customer Mobile</th>
 					<th>Stuff</th>
 					<th>Quantity</th>
 					<th>Unit</th>
@@ -60,8 +58,6 @@
 
 				<c:forEach var="tempItem" items="${ITEM_LIST}">
 					<tr>
-						<td>${tempItem.cname}</td>
-						<td>${tempItem.cmob}</td>
 						<td>${tempItem.stuff}</td>
 						<td>${tempItem.quantity}</td>
 						<td>${tempItem.unit}</td>

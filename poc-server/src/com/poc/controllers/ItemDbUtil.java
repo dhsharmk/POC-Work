@@ -126,27 +126,50 @@ public class ItemDbUtil {
 
 		Connection myConn = null;
 		PreparedStatement myStmt = null;
+		PreparedStatement myStmt1 = null;
+		ResultSet myRs = null;
 
 		try {
 			// get db connection
 			myConn = dataSource.getConnection();
 
-			// create sql for insert
-			String sql = "insert into accounts (user, cname, cmob, outstanding) values (?, ?, ?, ?)";
-
+			// create sql statements
+			String sql = "select * from accounts where cmob=?";
+//			String sql1 = "Update accounts set outstanding=outstanding+? where cmob=?";
+			
 			myStmt = myConn.prepareStatement(sql);
-
+			
 			// set the param values for the User
-			myStmt.setString(1, usr);
-			myStmt.setString(2, theAccount.getCname());
-			myStmt.setString(3, theAccount.getCmob());
-			myStmt.setString(4, Integer.toString(theAccount.getOutstanding()));
+			myStmt.setString(1, theAccount.getCmob());
 
-			// execute sql insert
-			myStmt.execute();
+			// execute sql
+			myRs = myStmt.executeQuery();
+			if(!myRs.next()) {
+				String sql1 = "insert into accounts (user, cname, cmob, outstanding) values (?, ?, ?, ?)";
+				
+				myStmt1 = myConn.prepareStatement(sql1);
+				
+				myStmt1.setString(1, usr);
+				myStmt1.setString(2, theAccount.getCname());
+				myStmt1.setString(3, theAccount.getCmob());
+				myStmt1.setLong(4, theAccount.getOutstanding());
+				
+				myStmt1.execute();
+			}
+			else {
+				String sql1 = "update accounts set outstanding=outstanding+? where cmob=?";
+				
+				myStmt1 = myConn.prepareStatement(sql1);
+				
+				myStmt1.setLong(1, theAccount.getOutstanding());
+				myStmt1.setString(2, theAccount.getCmob());
+				
+				myStmt1.execute();
+			}
 		} finally {
 			// clean up JDBC objects
-			close(myConn, myStmt, null);
+			close(myConn, myStmt, myRs);
+			close(myConn, myStmt1, null);
 		}
 	}
 
