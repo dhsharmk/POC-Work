@@ -62,6 +62,10 @@ public class ItemController extends HttpServlet {
 				viewAccount(request, response);
 				break;
 				
+			case "VIEWACCOUNTDASH":
+				viewAccountDash(request, response);
+				break;
+				
 			case "VIEWBILL":
 				viewBill(request, response);
 				break;
@@ -75,6 +79,20 @@ public class ItemController extends HttpServlet {
 			throw new ServletException(exc);
 		}
 
+	}
+
+	private void viewAccountDash(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// get parameters for account
+		String cname = request.getParameter("name");
+		String cmob = request.getParameter("mobile");
+		
+		//set attributes
+		request.setAttribute("CUSTOMER_NAME", cname);
+		request.setAttribute("CUSTOMER_MOB", cmob);
+		
+		//dispatch
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/acc-dash.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	private void viewBill(HttpServletRequest request, HttpServletResponse response) {

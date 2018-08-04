@@ -66,6 +66,14 @@
 									<i class="fa fa-clone left"></i> View Account
 								</button>
 							</form>
+							<form action="ItemController" method="GET">
+								<input type="hidden" name="command" value="VIEWACCOUNTDASH">
+								<input type="hidden" name="name" value="${tempAccount.cname}">
+								<input type="hidden" name="mobile" value="${tempAccount.cmob}">
+								<button class="btn btn-deep-orange waves-effect waves-light">
+									<i class="fa fa-clone left"></i> Generate Bill
+								</button>
+							</form>
 							<form action="ItemController" method="POST">
 								<input type="hidden" name="command" value="DELETEACCOUNT">
 								<input type="hidden" name="mobile" value="${tempAccount.cmob}">

@@ -6,15 +6,14 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- Bootstrap core CSS -->
-<link href="assets/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="assets/css/mdb.min.css" rel="stylesheet">
-<!-- Your custom styles (optional) -->
-<link href="assets/css/styles.css" rel="stylesheet">
+	<!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="assets/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="assets/css/styles.css" rel="stylesheet">
 <title>Dashboard</title>
 </head>
 <body>
@@ -53,18 +52,14 @@
 				<p>Example: Atta 10 kilo 50 rupye Shakkar 5 kilo 25 rupye ...</p>
 				<input type="hidden" name="command" value="PREVIEW">
 				<div class="form-row">
-					<div class="col-11">
-						<input type="text" class="form-control my-1" name="customerName"
-							placeholder="Customer's Name">
-					</div>
-					<div class="col-1">
-						<button type="button">
-							<i class="fa fa-microphone" aria-hidden="true"></i>
-						</button>
+					<div class="col-11"><input type="text" class="form-control my-1" name="customerName"
+					placeholder="Customer's Name" value="<%= request.getAttribute("CUSTOMER_NAME") %>"></div>
+					<div class="col-1"><button type="button"><i class="fa fa-microphone" aria-hidden="true"></i></button>
 					</div>
 				</div>
-				<input type="number" class="form-control my-1" name="customerMobile"
-					placeholder="Customer's Mobile Number">
+				 <input type="number"
+					class="form-control my-1" name="customerMobile"
+					placeholder="Customer's Mobile Number" value="<%= request.getAttribute("CUSTOMER_MOB") %>">
 				<textarea class="form-control my-1" name="input-items"
 					id="input-items" placeholder="Enter here"></textarea>
 			</div>
@@ -83,15 +78,15 @@
 		</form>
 	</div>
 
-	<!-- SCRIPTS -->
-	<!-- JQuery -->
-	<script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
-	<!-- Bootstrap tooltips -->
-	<script type="text/javascript" src="assets/js/popper.min.js"></script>
-	<!-- Bootstrap core JavaScript -->
-	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-	<!-- MDB core JavaScript -->
-	<script type="text/javascript" src="assets/js/mdb.min.js"></script>
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="assets/js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="assets/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="assets/js/mdb.min.js"></script>
 	<script src="assets/js/script-dash.js"></script>
 
 </body>
