@@ -11,3 +11,4 @@ cnamemic.addEventListener("click", function(){
 itemsmic.addEventListener("click", function(){
 	alert("Items List Mic Clicked");
 })
+ 
