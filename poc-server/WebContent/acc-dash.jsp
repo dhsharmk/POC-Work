@@ -52,22 +52,35 @@
 				<p>Example: Atta 10 kilo 50 rupye Shakkar 5 kilo 25 rupye ...</p>
 				<input type="hidden" name="command" value="PREVIEW">
 				<div class="form-row">
-					<div class="col-11"><input type="text" class="form-control my-1" name="customerName"
-					placeholder="Customer's Name" value="<%= request.getAttribute("CUSTOMER_NAME") %>"></div>
-					<div class="col-1"><button type="button"><i class="fa fa-microphone" aria-hidden="true"></i></button>
+					<div class="col-11">
+						<input type="text" class="form-control my-1" name="customerName"
+							placeholder="Customer's Name" value="<%= request.getAttribute("CUSTOMER_NAME") %>">
+					</div>
+					<div class="col-1">
+						<button type="button" id="cnamemic">
+							<i class="fa fa-microphone" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="col-11">
+						<input type="number" class="form-control my-1" name="customerMobile"
+					placeholder="Customer's Mobile Number" value="<%= request.getAttribute("CUSTOMER_MOB") %>">
+					</div>
+					<div class="col-1"></div>
+					<div class="col-11">
+						<textarea class="form-control my-1" name="input-items"
+					id="input-items" placeholder="Enter here"></textarea>
+					</div>
+					<div class="col-1">
+						<button type="button" id="itemsmic">
+							<i class="fa fa-microphone" aria-hidden="true"></i>
+						</button>
 					</div>
 				</div>
-				 <input type="number"
-					class="form-control my-1" name="customerMobile"
-					placeholder="Customer's Mobile Number" value="<%= request.getAttribute("CUSTOMER_MOB") %>">
-				<textarea class="form-control my-1" name="input-items"
-					id="input-items" placeholder="Enter here"></textarea>
 			</div>
 			<div id="btn-preview">
 				<button class="btn btn-primary my-2" type="submit">Preview</button>
 			</div>
 		</form>
-
 		<hr>
 
 		<form action="ItemController" method="GET">

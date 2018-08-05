@@ -58,15 +58,25 @@
 							placeholder="Customer's Name">
 					</div>
 					<div class="col-1">
-						<button type="button">
+						<button type="button" id="cnamemic">
+							<i class="fa fa-microphone" aria-hidden="true"></i>
+						</button>
+					</div>
+					<div class="col-11">
+						<input type="number" class="form-control my-1" name="customerMobile"
+					placeholder="Customer's Mobile Number">
+					</div>
+					<div class="col-1"></div>
+					<div class="col-11">
+						<textarea class="form-control my-1" name="input-items"
+					id="input-items" placeholder="Enter here"></textarea>
+					</div>
+					<div class="col-1">
+						<button type="button" id="itemsmic">
 							<i class="fa fa-microphone" aria-hidden="true"></i>
 						</button>
 					</div>
 				</div>
-				<input type="number" class="form-control my-1" name="customerMobile"
-					placeholder="Customer's Mobile Number">
-				<textarea class="form-control my-1" name="input-items"
-					id="input-items" placeholder="Enter here"></textarea>
 			</div>
 			<div id="btn-preview">
 				<button class="btn btn-primary my-2" type="submit">Preview</button>
