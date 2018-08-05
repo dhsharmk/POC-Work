@@ -15,7 +15,7 @@ button {
 	font-size: 25px;
 	cursor: pointer;
 	outline: none;
-}
+} 
 
 button:hover {
 	color: tomato;
