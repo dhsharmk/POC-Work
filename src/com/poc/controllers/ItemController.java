@@ -321,7 +321,7 @@ public class ItemController extends HttpServlet {
 
 		ItemDbUtil.deleteAccount(user, cmob);
 
-		// get students from db util
+		// get students from db   util
 		List<Account> Accounts = ItemDbUtil.getAccounts(user);
 
 		// add students to the request
@@ -338,7 +338,7 @@ public class ItemController extends HttpServlet {
 		for (int i=0;i<itemlist.size();i++) {
 		if (itemlist.get(i).contains("&#8377;")) {
 		itemlist.set(i, (itemlist.get(i).split("&#8377;")[1]));
-		itemlist.add(i+1, "rupees");
+		itemlist.add(i+1, "rupya");
 		}
 		
 	}	
