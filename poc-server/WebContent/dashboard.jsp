@@ -18,42 +18,13 @@
 <title>Dashboard</title>
 </head>
 <body>
-	<nav role="navigation">
-		<div id="menuToggle">
-			<input type="checkbox" /> <span></span> <span></span> <span></span>
-			<ul id="menu">
-				<li>
-					<form action="ItemController" method="GET">
-						<input type="hidden" name="command" value="VIEWBILL">
-						<button>Bill</button>
-					</form>
-				</li>
-				<li><form action="ItemController" method="GET">
-						<input type="hidden" name="command" value="LISTACCOUNTS">
-						<button>Accounts</button>
-					</form></li>
-				<li><form action="UserController" method="GET">
-						<input type="hidden" name="command" value="UPDATEPROFILE">
-						<button>Profile</button>
-					</form></li>
-				<li><form action="UserController" method="GET">
-						<input type="hidden" name="command" value="LOGOUT">
-						<button>Logout</button>
-					</form></li>
-			</ul>
-		</div>
-	</nav>
-	<div class="container text-center mt-5 my-3">
-		<h1 class="my-2">
-			Welcome
-			<%=session.getAttribute("CURRENT_USER_FIRST_NAME")%></h1>
-		<hr>
+	<jsp:include page="side-nav.html" />
+	<!--  <div class="container text-center mt-5 my-3">
 		<form action="ItemController" method="GET">
 			<div class="container my-3" id="input-div">
-				<p>Example: Atta 10 kilo 50 rupye Shakkar 5 kilo 25 rupye ...</p>
 				<input type="hidden" name="command" value="PREVIEW">
 				<div class="form-row">
-					<div class="col-11">
+					<div class="col-5">
 						<input type="text" class="form-control my-1" name="customerName"
 							placeholder="Customer's Name">
 					</div>
@@ -62,14 +33,14 @@
 							<i class="fa fa-microphone" aria-hidden="true"></i>
 						</button>
 					</div>
-					<div class="col-11">
-						<input type="number" class="form-control my-1" name="customerMobile"
-					placeholder="Customer's Mobile Number">
+					<div class="col-5">
+						<input type="number" class="form-control my-1"
+							name="customerMobile" placeholder="Customer's Mobile Number">
 					</div>
 					<div class="col-1"></div>
-					<div class="col-11">
+					<div class="col-10">
 						<textarea class="form-control my-1" name="input-items"
-					id="input-items" placeholder="Enter here"></textarea>
+							id="input-items" placeholder="Enter here" rows="10"></textarea>
 					</div>
 					<div class="col-1">
 						<button type="button" id="itemsmic">
@@ -82,15 +53,62 @@
 				<button class="btn btn-primary my-2" type="submit">Preview</button>
 			</div>
 		</form>
+	</div>  -->
 
-		<hr>
+	<div class="container">
+		<div class="container text-center">
+			<div class="row my-5">
+				<div class="col-md-5 mx-auto">
+					<div class="card">
+						<h5 class="card-header info-color white-text text-center py-4">
+							<strong>Create Bill</strong>
+						</h5>
+						<!--Card content-->
+						<div class="card-body px-lg-5 pt-0">
+							<!-- Form -->
+							<form class="text-center" style="color: #757575;"
+								action="ItemController" method="GET">
+								<input class="form-control my-1" type="hidden" name="command"
+									value="PREVIEW" />
+								<!-- Customer Name -->
+								<div class="md-form">
+									<input type="text" id="cname" class="form-control"
+										name="customerName"> <label for="cname">Customer
+										Name</label>
+									<button type="button" id="cnamemic">
+										<i class="fa fa-microphone" aria-hidden="true"></i>
+									</button>
+								</div>
+								<!-- Mobile -->
+								<div class="md-form">
+									<input type="number" id="cmob" class="form-control"
+										name="customerMobile"> <label for="cmob">Customer
+										Mobile</label>
+								</div>
 
-		<form action="ItemController" method="GET">
-			<h1 class="text-center">View List</h1>
-			<input type="hidden" name="command" value="LIST"> <input
-				class="form-control" type="date" name="date" required>
-			<button class="btn btn-primary my-2">List</button>
-		</form>
+								<!-- Input Items -->
+								<div class="md-form">
+									<textarea class="form-control" name="input-items"
+										id="input-items" rows="5"></textarea>
+									<label for="input-items">Enter Items Here!!!</label>
+									<button type="button" id="itemsmic">
+										<i class="fa fa-microphone" aria-hidden="true"></i>
+									</button>
+								</div>
+
+								<!-- Preview button -->
+								<button
+									class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0"
+									type="submit">Preview</button>
+							</form>
+							<!-- Form -->
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<!-- SCRIPTS -->

@@ -21,31 +21,7 @@
 </head>
 
 <body>
-	<nav role="navigation">
-		<div id="menuToggle">
-			<input type="checkbox" /> <span></span> <span></span> <span></span>
-			<ul id="menu">
-				<li>
-					<form action="ItemController" method="GET">
-						<input type="hidden" name="command" value="VIEWBILL">
-						<button>Bill</button>
-					</form>
-				</li>
-				<li><form action="ItemController" method="GET">
-						<input type="hidden" name="command" value="LISTACCOUNTS">
-						<button>Accounts</button>
-					</form></li>
-				<li><form action="UserController" method="GET">
-						<input type="hidden" name="command" value="UPDATEPROFILE">
-						<button>Profile</button>
-					</form></li>
-				<li><form action="UserController" method="GET">
-						<input type="hidden" name="command" value="LOGOUT">
-						<button>Logout</button>
-					</form></li>
-			</ul>
-		</div>
-	</nav>
+	<jsp:include page="side-nav.html" />
 	<div class="container">
 		<div class="row">
 			<c:forEach var="tempAccount" items="${ACCOUNT_LIST}">

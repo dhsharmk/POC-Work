@@ -34,19 +34,17 @@
 							<form class="text-center" style="color: #757575;"
 								action="UserController" method="POST">
 								<input class="form-control my-1" type="hidden" name="command"
-										value="LOGIN" />
+									value="LOGIN" />
 								<!-- Email -->
 								<div class="md-form">
-									 <input type="text"
-										id="email" class="form-control"
-										name="username"> <label for="email">E-mail
-										or Phone</label>
+									<input type="text" id="email" class="form-control"
+										name="username"> <label for="email">E-mail or
+										Phone</label>
 								</div>
 								<!-- Password -->
 								<div class="md-form">
-									<input type="password" id="password"
-										class="form-control" name="password"> <label
-										for="password">Password</label>
+									<input type="password" id="password" class="form-control"
+										name="password"> <label for="password">Password</label>
 								</div>
 								<div class="d-flex justify-content-around">
 									<div>

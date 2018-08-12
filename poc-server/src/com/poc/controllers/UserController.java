@@ -53,11 +53,14 @@ public class UserController extends HttpServlet {
 			case "UPDATE":
 				updateUser(request, response);
 				break;
-				
+
 			case "UPDATEPROFILE":
 				viewUser(request, response);
 				break;
 
+			case "VIEWLIST":
+				viewList(request, response);
+				break;
 			case "LOGOUT":
 				logoutUser(request, response);
 				break;
@@ -66,6 +69,13 @@ public class UserController extends HttpServlet {
 		} catch (Exception exc) {
 			throw new ServletException(exc);
 		}
+	}
+
+	private void viewList(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// load view list form
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-view.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -99,12 +109,12 @@ public class UserController extends HttpServlet {
 	}
 
 	private void selectLanguage(HttpServletRequest request, HttpServletResponse response) {
-		//Get user from session
-		
-		//add language to user in data base
-		
-		//redirect to dashboard
-		
+		// Get user from session
+
+		// add language to user in data base
+
+		// redirect to dashboard
+
 	}
 
 	private void addUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -147,7 +157,7 @@ public class UserController extends HttpServlet {
 			session.setAttribute("CURRENT_USER_EMAIL", theUser.getEmail());
 			session.setAttribute("CURRENT_USER_MOBILE", theUser.getMobile());
 			session.setAttribute("CURRENT_USER_PASSWORD", theUser.getPassword());
-			
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/dashboard.jsp");
 			dispatcher.forward(request, response);
 		} else {
@@ -158,7 +168,7 @@ public class UserController extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 	}
-	
+
 	private void viewUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try {
 			response.sendRedirect("user-update-profile.jsp");
@@ -166,7 +176,7 @@ public class UserController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private void updateUser(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		if (session != null) {
