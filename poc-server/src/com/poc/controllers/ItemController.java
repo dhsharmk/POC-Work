@@ -2,6 +2,7 @@ package com.poc.controllers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -61,15 +62,15 @@ public class ItemController extends HttpServlet {
 			case "VIEWACCOUNT":
 				viewAccount(request, response);
 				break;
-				
+
 			case "VIEWACCOUNTDASH":
 				viewAccountDash(request, response);
 				break;
-				
+
 			case "VIEWBILL":
 				viewBill(request, response);
 				break;
-				
+
 			case "PREVIEW":
 				previewItems(request, response);
 				break;
@@ -78,19 +79,19 @@ public class ItemController extends HttpServlet {
 		} catch (Exception exc) {
 			throw new ServletException(exc);
 		}
-
 	}
 
-	private void viewAccountDash(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void viewAccountDash(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// get parameters for account
 		String cname = request.getParameter("name");
 		String cmob = request.getParameter("mobile");
-		
-		//set attributes
+
+		// set attributes
 		request.setAttribute("CUSTOMER_NAME", cname);
 		request.setAttribute("CUSTOMER_MOB", cmob);
-		
-		//dispatch
+
+		// dispatch
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/acc-dash.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -101,7 +102,6 @@ public class ItemController extends HttpServlet {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -119,13 +119,10 @@ public class ItemController extends HttpServlet {
 			case "DELETEACCOUNT":
 				deleteAccount(request, response);
 				break;
-
 			}
-
 		} catch (Exception exc) {
 			throw new ServletException(exc);
 		}
-
 	}
 
 	private void previewItems(HttpServletRequest request, HttpServletResponse response) throws ServletException {
@@ -143,7 +140,7 @@ public class ItemController extends HttpServlet {
 		int total = 0;
 
 		// convert items to array
-		String[] itemsArray = items.split(" ");
+		String[] itemsArray = handleRupeesSymbol(items);
 
 		try {
 			for (int i = 0; i < itemsArray.length - 2; i = i + 5) {
@@ -193,7 +190,7 @@ public class ItemController extends HttpServlet {
 		String stuff = null, quantity = null, unit = null, price = null, sc = null, qc = null, uc = null, pc = null;
 
 		// convert items to array
-		String[] itemsArray = items.split(" ");
+		String[] itemsArray = handleRupeesSymbol(items);
 		int j = 1;
 		try {
 			for (int i = 0; i < itemsArray.length - 2; i = i + 5) {
@@ -293,7 +290,6 @@ public class ItemController extends HttpServlet {
 	}
 
 	private void viewAccount(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
 		HttpSession session = request.getSession();
 		String user = (String) session.getAttribute("CURRENT_USER_EMAIL");
 		String cmob = request.getParameter("mobile");
@@ -325,6 +321,20 @@ public class ItemController extends HttpServlet {
 		// send to JSP page (view)
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-accounts.jsp");
 		dispatcher.forward(request, response);
+	}
+
+	public String[] handleRupeesSymbol(String items) {
+		List<String> temp = Arrays.asList(items.split(" "));
+		List<String> itemlist = new ArrayList<String>(temp);
+		for (int i = 0; i < itemlist.size(); i++) {
+			if (itemlist.get(i).contains("&#8377;")) {
+				itemlist.set(i, (itemlist.get(i).split("&#8377;")[1]));
+				itemlist.add(i + 1, "rupya");
+			}
+
+		}
+		String[] newArray = itemlist.toArray(new String[itemlist.size()]);
+		return newArray;
 	}
 
 }

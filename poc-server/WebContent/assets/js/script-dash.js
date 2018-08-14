@@ -1,7 +1,7 @@
 var cnamemic = document.querySelector("#cnamemic");
 var itemsmic = document.querySelector("#itemsmic");
 
-document.getElementById("input-items").textContent = "Atta 10 kilo 50 rupye Shakkar 5 kilo 25 rupye";
+document.getElementById("input-items").textContent = "10 kilo Atta 50 rupye 5 kilo Shakkar 25 rupye";
 
 cnamemic.addEventListener("click", function(){
 	console.log("Customer Name Mic Clicked");

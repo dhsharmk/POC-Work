@@ -35,22 +35,23 @@
 				<c:forEach var="tempItem" items="${ITEMS_PREVIEW}" varStatus="loop">
 					<tr>
 						<td>${loop.count}</td>
-						<td><input name="stuff${loop.count }" type="text"
+						<td><input name="stuff${loop.count }" id="stuff${loop.count }" type="text"
 							value="${tempItem.stuff}"></td>
-						<td><input name="quantity${loop.count }" type="text"
+						<td><input name="quantity${loop.count }" id="quantity${loop.count }" type="text"
 							value="${tempItem.quantity}"></td>
-						<td><input name="unit${loop.count }" type="text"
+						<td><input name="unit${loop.count }" id="unit${loop.count }" type="text"
 							value="${tempItem.unit}"></td>
-						<td>Rs. <input name="price${loop.count }" type="text"
+						<td>Rs. <input name="price${loop.count }" id="price${loop.count }" type="text"
 							value="${tempItem.price}"></td>
 					</tr>
 				</c:forEach>
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
 					<td>Total</td>
-					<td><%= request.getAttribute("TOTAL_AMOUNT") %></td>
+					<td id="total"><%= request.getAttribute("TOTAL_AMOUNT") %></td>
+					<td><button type="button" id="reload"><i class="fa fa-refresh" aria-hidden="true"></i>
+					</button></td>
 				</tr>
 			</table>
 
@@ -85,6 +86,7 @@
 	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 	<!-- MDB core JavaScript -->
 	<script type="text/javascript" src="assets/js/mdb.min.js"></script>
+	<script type="text/javascript" src="assets/js/preview-items.js"></script>
 </body>
 
 </html>
