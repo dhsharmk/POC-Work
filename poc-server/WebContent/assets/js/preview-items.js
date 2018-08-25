@@ -18,3 +18,4 @@ reload.addEventListener("click", function() {
 
 	document.querySelector("#total").textContent = total;
 })
+

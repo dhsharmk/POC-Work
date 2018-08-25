@@ -18,7 +18,7 @@
 <link href="assets/css/styles.css" rel="stylesheet">
 
 <title>Update Profile</title>
-</head>
+</head> 
 
 <body>
 	<jsp:include page="side-nav.html" />

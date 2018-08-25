@@ -18,7 +18,6 @@
 <title>POC App</title>
 </head>
 <body>
-
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">

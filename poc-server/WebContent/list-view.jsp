@@ -18,7 +18,7 @@
 <title>Dashboard</title>
 </head>
 <body>
-	<jsp:include page="side-nav.html" />
+	<jsp:include page="side-nav.html" /> 
 	<div class="container text-center mt-5 my-3">
 		<form action="ItemController" method="GET">
 			<h1 class="text-center">View List</h1>

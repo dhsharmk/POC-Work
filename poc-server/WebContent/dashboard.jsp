@@ -15,7 +15,7 @@
 <link href="assets/css/mdb.min.css" rel="stylesheet">
 <!-- Your custom styles (optional) -->
 <link href="assets/css/styles.css" rel="stylesheet">
-<title>Dashboard</title>
+<title>Dashboard</title> 
 </head>
 <body>
 	<jsp:include page="side-nav.html" />

@@ -18,7 +18,7 @@
 <!-- Your custom styles (optional) -->
 <link href="assets/css/styles.css" rel="stylesheet">
 <title>Items Preview</title>
-</head>
+</head> 
 
 <body>
 	<jsp:include page="side-nav.html" />

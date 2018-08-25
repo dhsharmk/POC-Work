@@ -18,7 +18,7 @@
 <link href="assets/css/styles.css" rel="stylesheet">
 
 <title>Items List</title>
-</head>
+</head> 
 
 <body>
 	<jsp:include page="side-nav.html" />

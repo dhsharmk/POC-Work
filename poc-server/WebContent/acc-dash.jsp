@@ -12,7 +12,7 @@
 <!-- Bootstrap core CSS -->
 <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 <!-- Material Design Bootstrap -->
-<link href="assets/css/mdb.min.css" rel="stylesheet">
+<link href="assets/css/mdb.min.css" rel="stylesheet"> 
 <!-- Your custom styles (optional) -->
 <link href="assets/css/styles.css" rel="stylesheet">
 <title>Dashboard</title>

@@ -31,7 +31,7 @@ public class ItemController extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		super.init();
+		super.init(); 
 
 		// create our User db util ... and pass in the conn pool / datasource
 		try {
