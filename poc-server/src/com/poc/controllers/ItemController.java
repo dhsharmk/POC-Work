@@ -24,6 +24,7 @@ import com.poc.models.Item;
 @WebServlet("/ItemController")
 public class ItemController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	public static String replcedRuppeesSign;
 
 	private ItemDbUtil ItemDbUtil;
 	@Resource(name = "jdbc/poc_app")
@@ -128,10 +129,12 @@ public class ItemController extends HttpServlet {
 	private void previewItems(HttpServletRequest request, HttpServletResponse response) throws ServletException {
 		List<Item> itemslist = new ArrayList<>();
 		Item item = null;
-
+	
 		// read user input from form data
 		String str = request.getParameter("input-items");
-		String items = convertStr(str);
+		handleRupeesSymbol(str);
+		System.out.println(replcedRuppeesSign);
+		String items = convertStr(replcedRuppeesSign);
 
 		String cname = request.getParameter("customerName");
 		String cmob = request.getParameter("customerMobile");
@@ -334,6 +337,7 @@ public class ItemController extends HttpServlet {
 
 		}
 		String[] newArray = itemlist.toArray(new String[itemlist.size()]);
+		 replcedRuppeesSign= String.join(" ", newArray);
 		return newArray;
 	}
 
