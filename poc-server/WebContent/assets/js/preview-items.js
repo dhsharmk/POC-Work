@@ -27,7 +27,7 @@ addrow.addEventListener("click", function(){
 	insertValues();
 });
 
-function addRow(){
+function addRow(){ 
 	rows++;
     var html = '<tr>' +
     '<td>' + rows + '</td>' +

@@ -48,7 +48,7 @@
 								<input type="hidden" name="mobile" value="${tempAccount.cmob}">
 								<button class="btn btn-block btn-deep-orange waves-effect waves-light mt-1">
 									<i class="fa fa-clone left"></i> Generate Bill
-								</button>
+								</button> 
 							</form>
 							<form action="ItemController" method="POST">
 								<input type="hidden" name="command" value="DELETEACCOUNT">

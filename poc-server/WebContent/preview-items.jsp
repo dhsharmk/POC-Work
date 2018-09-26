@@ -32,7 +32,7 @@
 					<th>Unit</th>
 					<th>Price</th>
 				</tr>
-			</table>
+			</table> 
 			<table>
 				<tr>
 					<td><button type="button" id="addrow" class="btn btn-primary">Add

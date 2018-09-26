@@ -251,7 +251,7 @@ public class ItemController extends HttpServlet {
 						strArray[i + 1] = strArray[i];
 						strArray[i] = temp;
 					}
-				}
+				} 
 				c = true;
 			}
 			str = String.join(" ", strArray);

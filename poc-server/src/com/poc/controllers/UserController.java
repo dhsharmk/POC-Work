@@ -166,7 +166,7 @@ public class UserController extends HttpServlet {
 			session.setAttribute("CURRENT_USER_PASSWORD", theUser.getPassword());
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/preview-items.jsp");
-			dispatcher.forward(request, response);
+			dispatcher.forward(request, response); 
 		} else {
 			PrintWriter out = response.getWriter();
 			out.println("Invalid Username/Password");
