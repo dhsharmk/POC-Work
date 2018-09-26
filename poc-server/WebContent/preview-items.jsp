@@ -32,40 +32,33 @@
 					<th>Unit</th>
 					<th>Price</th>
 				</tr>
-				<c:forEach var="tempItem" items="${ITEMS_PREVIEW}" varStatus="loop">
-					<tr>
-						<td>${loop.count}</td>
-						<td><input name="stuff${loop.count }" id="stuff${loop.count }" type="text"
-							value="${tempItem.stuff}"></td>
-						<td><input name="quantity${loop.count }" id="quantity${loop.count }" type="text"
-							value="${tempItem.quantity}"></td>
-						<td><input name="unit${loop.count }" id="unit${loop.count }" type="text"
-							value="${tempItem.unit}"></td>
-						<td>Rs. <input name="price${loop.count }" id="price${loop.count }" type="text"
-							value="${tempItem.price}"></td>
-					</tr>
-				</c:forEach>
+			</table>
+			<table>
 				<tr>
-					<td></td>
-					<td></td>
+					<td><button type="button" id="addrow" class="btn btn-primary">Add
+							row</button></td>
 					<td>Total</td>
-					<td id="total"><%= request.getAttribute("TOTAL_AMOUNT") %></td>
-					<td><button type="button" id="reload"><i class="fa fa-refresh" aria-hidden="true"></i>
-					</button></td>
+					<td id="total"><%=request.getAttribute("TOTAL_AMOUNT")%></td>
+					<td><button type="button" id="reload">
+							<i class="fa fa-refresh" aria-hidden="true"></i>
+						</button></td>
+						<td>
+							<button type="button" class="btn btn-block btn-deep-orange waves-effect waves-light mt-1"><i class="fa fa-whatsapp" aria-hidden="true"></i>
+								SHARE</button>
+						</td>
 				</tr>
 			</table>
-
 			<div class="container my-3" id="input-div">
 				<input type="hidden" name="command" value="SAVE"> <input
 					type="hidden" class="form-control my-1" name="customerName"
 					placeholder="Customer's Name"
-					value="<%= request.getAttribute("CUSTOMER_NAME") %>"> <input
+					value="<%=request.getAttribute("CUSTOMER_NAME")%>"> <input
 					type="hidden" class="form-control my-1" name="customerMobile"
 					placeholder="Customer's Mobile Number"
-					value="<%= request.getAttribute("CUSTOMER_MOB") %>"> <input
-					type="hidden" class="form-control my-1" name="input-items"
+					value="<%=request.getAttribute("CUSTOMER_MOB")%>"> <input
+					type="text" class="form-control my-1" name="input-items"
 					id="input-items" placeholder="Enter here"
-					value="<%= request.getAttribute("INPUT_ITEMS") %>"> <input
+					value="<%=request.getAttribute("INPUT_ITEMS")%>"> <input
 					type="number" name="paid" placeholder="Paid Amount"
 					class="form-control" required>
 			</div>

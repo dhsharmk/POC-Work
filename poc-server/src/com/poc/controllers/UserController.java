@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -149,6 +150,12 @@ public class UserController extends HttpServlet {
 		boolean check = UserDbUtil.checkUser(theUser);
 		if (check) {
 			theUser = UserDbUtil.getUser(username);
+			
+			//set cookie
+			Cookie loginCookie = new Cookie("user", theUser.getEmail());
+			//setting cookie to expiry in 30 mins
+			loginCookie.setMaxAge(30*60);
+			response.addCookie(loginCookie);
 
 			// set a session for user
 			HttpSession session = request.getSession();
@@ -158,7 +165,7 @@ public class UserController extends HttpServlet {
 			session.setAttribute("CURRENT_USER_MOBILE", theUser.getMobile());
 			session.setAttribute("CURRENT_USER_PASSWORD", theUser.getPassword());
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/dashboard.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/preview-items.jsp");
 			dispatcher.forward(request, response);
 		} else {
 			PrintWriter out = response.getWriter();
@@ -199,10 +206,26 @@ public class UserController extends HttpServlet {
 	}
 
 	private void logoutUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		response.setContentType("text/html");
+    	Cookie loginCookie = null;
+    	Cookie[] cookies = request.getCookies();
+    	if(cookies != null){
+	    	for(Cookie cookie : cookies){
+	    		if(cookie.getName().equals("user")){
+	    			loginCookie = cookie;
+	    			break;
+	    		}
+	    	}
+    	}
+    	if(loginCookie != null){
+    		loginCookie.setMaxAge(0);
+        	response.addCookie(loginCookie);
+    	}
+		
 		// invalidate session
 		HttpSession session = request.getSession();
 		session.invalidate();
 		response.sendRedirect("user-login.jsp");
 	}
-
 }

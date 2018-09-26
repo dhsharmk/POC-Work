@@ -18,43 +18,17 @@
 <title>Dashboard</title> 
 </head>
 <body>
+<%
+String userName = null;
+Cookie[] cookies = request.getCookies();
+if(cookies !=null){
+for(Cookie cookie : cookies){
+	if(cookie.getName().equals("user")) userName = cookie.getValue();
+}
+}
+if(userName == null) response.sendRedirect("user-login.jsp");
+%>
 	<jsp:include page="side-nav.html" />
-	<!--  <div class="container text-center mt-5 my-3">
-		<form action="ItemController" method="GET">
-			<div class="container my-3" id="input-div">
-				<input type="hidden" name="command" value="PREVIEW">
-				<div class="form-row">
-					<div class="col-5">
-						<input type="text" class="form-control my-1" name="customerName"
-							placeholder="Customer's Name">
-					</div>
-					<div class="col-1">
-						<button type="button" id="cnamemic">
-							<i class="fa fa-microphone" aria-hidden="true"></i>
-						</button>
-					</div>
-					<div class="col-5">
-						<input type="number" class="form-control my-1"
-							name="customerMobile" placeholder="Customer's Mobile Number">
-					</div>
-					<div class="col-1"></div>
-					<div class="col-10">
-						<textarea class="form-control my-1" name="input-items"
-							id="input-items" placeholder="Enter here" rows="10"></textarea>
-					</div>
-					<div class="col-1">
-						<button type="button" id="itemsmic">
-							<i class="fa fa-microphone" aria-hidden="true"></i>
-						</button>
-					</div>
-				</div>
-			</div>
-			<div id="btn-preview">
-				<button class="btn btn-primary my-2" type="submit">Preview</button>
-			</div>
-		</form>
-	</div>  -->
-
 	<div class="container">
 		<div class="container text-center">
 			<div class="row my-5">
@@ -102,9 +76,7 @@
 									type="submit">Preview</button>
 							</form>
 							<!-- Form -->
-
 						</div>
-
 					</div>
 				</div>
 			</div>
