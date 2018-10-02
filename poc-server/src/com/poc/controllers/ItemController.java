@@ -93,13 +93,13 @@ public class ItemController extends HttpServlet {
 		request.setAttribute("CUSTOMER_MOB", cmob);
 
 		// dispatch
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/acc-dash.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/preview-items.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	private void viewBill(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			response.sendRedirect("dashboard.jsp");
+			response.sendRedirect("preview-items.jsp");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -223,7 +223,7 @@ public class ItemController extends HttpServlet {
 			throw new ServletException(exc);
 		} finally {
 			// load login page
-			response.sendRedirect("dashboard.jsp");
+			response.sendRedirect("preview-items.jsp");
 		}
 	}
 

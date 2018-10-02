@@ -72,13 +72,6 @@ public class UserController extends HttpServlet {
 		}
 	}
 
-	private void viewList(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// load view list form
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-view.jsp");
-		dispatcher.forward(request, response);
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -107,6 +100,13 @@ public class UserController extends HttpServlet {
 			throw new ServletException(exc);
 		}
 
+	}
+
+	private void viewList(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// load view list form
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/list-view.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	private void selectLanguage(HttpServletRequest request, HttpServletResponse response) {
@@ -152,10 +152,9 @@ public class UserController extends HttpServlet {
 			theUser = UserDbUtil.getUser(username);
 			
 			//set cookie
-			Cookie loginCookie = new Cookie("user", theUser.getEmail());
-			//setting cookie to expiry in 30 mins
-			loginCookie.setMaxAge(30*60);
-			response.addCookie(loginCookie);
+			Cookie user = new Cookie("user", theUser.getEmail());
+			user.setMaxAge(30*60);
+			response.addCookie(user);
 
 			// set a session for user
 			HttpSession session = request.getSession();

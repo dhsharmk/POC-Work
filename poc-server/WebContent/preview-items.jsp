@@ -38,7 +38,7 @@
 					<td><button type="button" id="addrow" class="btn btn-primary">Add
 							row</button></td>
 					<td>Total</td>
-					<td id="total"><%=request.getAttribute("TOTAL_AMOUNT")%></td>
+					<td id="total">0</td>
 					<td><button type="button" id="reload">
 							<i class="fa fa-refresh" aria-hidden="true"></i>
 						</button></td>
@@ -49,18 +49,16 @@
 				</tr>
 			</table>
 			<div class="container my-3" id="input-div">
-				<input type="hidden" name="command" value="SAVE"> <input
-					type="hidden" class="form-control my-1" name="customerName"
-					placeholder="Customer's Name"
-					value="<%=request.getAttribute("CUSTOMER_NAME")%>"> <input
-					type="hidden" class="form-control my-1" name="customerMobile"
-					placeholder="Customer's Mobile Number"
-					value="<%=request.getAttribute("CUSTOMER_MOB")%>"> <input
-					type="text" class="form-control my-1" name="input-items"
-					id="input-items" placeholder="Enter here"
-					value="<%=request.getAttribute("INPUT_ITEMS")%>"> <input
-					type="number" name="paid" placeholder="Paid Amount"
-					class="form-control" required>
+				<input type="hidden" name="command" value="SAVE">
+				<% if(request.getAttribute("CUSTOMER_NAME")!=null){%>
+				<input type="text" class="form-control my-1" name="customerName" placeholder="Customer's Name" value="<%=request.getAttribute("CUSTOMER_NAME")%>">
+				<input type="text" class="form-control my-1" name="customerMobile" placeholder="Customer's Mobile Number" value="<%=request.getAttribute("CUSTOMER_MOB")%>">
+				<%} else { %>
+				<input type="text" class="form-control my-1" name="customerName" placeholder="Customer's Name">
+				<input type="text" class="form-control my-1" name="customerMobile" placeholder="Customer's Mobile Number">
+				<%} %>
+				<input type="text" class="form-control my-1" name="input-items" id="input-items" placeholder="Enter here">
+				<input type="number" name="paid" placeholder="Paid Amount" class="form-control" required>
 			</div>
 			<button class="btn btn-primary my-2" type="submit">Save</button>
 		</form>
