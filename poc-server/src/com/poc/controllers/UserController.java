@@ -152,9 +152,25 @@ public class UserController extends HttpServlet {
 			theUser = UserDbUtil.getUser(username);
 			
 			//set cookie
-			Cookie user = new Cookie("user", theUser.getEmail());
-			user.setMaxAge(30*60);
-			response.addCookie(user);
+			Cookie email = new Cookie("email", theUser.getEmail());
+			email.setMaxAge(30*60);
+			response.addCookie(email);
+
+			Cookie fname = new Cookie("fname", theUser.getFirstName());
+			fname.setMaxAge(30*60);
+			response.addCookie(fname);
+
+			Cookie lname = new Cookie("lname", theUser.getLastName());
+			lname.setMaxAge(30*60);
+			response.addCookie(lname);
+
+			Cookie mob = new Cookie("mob", theUser.getMobile());
+			mob.setMaxAge(30*60);
+			response.addCookie(mob);
+
+			Cookie pass = new Cookie("pass", theUser.getPassword());
+			pass.setMaxAge(30*60);
+			response.addCookie(pass);
 
 			// set a session for user
 			HttpSession session = request.getSession();
