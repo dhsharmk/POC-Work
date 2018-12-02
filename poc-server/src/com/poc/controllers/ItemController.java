@@ -71,10 +71,8 @@ public class ItemController extends HttpServlet {
 			case "VIEWBILL":
 				viewBill(request, response);
 				break;
+					
 
-			case "PREVIEW":
-				previewItems(request, response);
-				break;
 			}
 
 		} catch (Exception exc) {
@@ -126,63 +124,19 @@ public class ItemController extends HttpServlet {
 		}
 	}
 
-	private void previewItems(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-		List<Item> itemslist = new ArrayList<>();
-		Item item = null;
 	
-		// read user input from form data
-		String str = request.getParameter("input-items");
-		handleRupeesSymbol(str);
-		System.out.println(replcedRuppeesSign);
-		String items = convertStr(replcedRuppeesSign);
-
-		String cname = request.getParameter("customerName");
-		String cmob = request.getParameter("customerMobile");
-
-		String stuff = null, quantity = null, unit = null, price = null, amount = "";
-		int total = 0;
-
-		// convert items to array
-		String[] itemsArray = handleRupeesSymbol(items);
-
-		try {
-			for (int i = 0; i < itemsArray.length - 2; i = i + 5) {
-				stuff = itemsArray[i];
-				quantity = itemsArray[i + 1];
-				unit = itemsArray[i + 2];
-				price = itemsArray[i + 3];
-				amount = "" + Integer.parseInt(quantity) * Integer.parseInt(price);
-				total += Integer.parseInt(amount);
-
-				item = new Item(cname, cmob, unit, quantity, stuff, price);
-
-				itemslist.add(item);
-			}
-			// add items to the request
-			request.setAttribute("ITEMS_PREVIEW", itemslist);
-			request.setAttribute("CUSTOMER_NAME", cname);
-			request.setAttribute("CUSTOMER_MOB", cmob);
-			request.setAttribute("INPUT_ITEMS", items);
-			request.setAttribute("TOTAL_AMOUNT", total);
-
-			// send to JSP page (view)
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/preview-items.jsp");
-			dispatcher.forward(request, response);
-		} catch (Exception exc) {
-			throw new ServletException(exc);
-		}
-	}
-
 	private void saveItems(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+         System.out.println("inside saveitems");
 		Item item = null;
 		Account account = null;
 		String amount = null;
 		int total = 0;
 
 		// read user input from form data
-		String items = request.getParameter("input-items");
+		String rowcountvalue = request.getParameter("input-items");
+		int rowcount = Integer.valueOf(rowcountvalue);
 		String paid = request.getParameter("paid");
+		System.out.println(paid);
 
 		String cname = request.getParameter("customerName");
 		String cmob = request.getParameter("customerMobile");
@@ -193,10 +147,11 @@ public class ItemController extends HttpServlet {
 		String stuff = null, quantity = null, unit = null, price = null, sc = null, qc = null, uc = null, pc = null;
 
 		// convert items to array
-		String[] itemsArray = handleRupeesSymbol(items);
+	  //  String[] itemsArray = handleRupeesSymbol(items);
+			
 		int j = 1;
 		try {
-			for (int i = 0; i < itemsArray.length - 2; i = i + 5) {
+			for (int i = 0; i <rowcount; i++) {
 				sc = "stuff" + j;
 				qc = "quantity" + j;
 				uc = "unit" + j;
@@ -206,6 +161,10 @@ public class ItemController extends HttpServlet {
 				quantity = request.getParameter(qc);
 				unit = request.getParameter(uc);
 				price = request.getParameter(pc);
+				if (price.contains("&#8377;")) 
+				price = (price.split("&#8377;")[1]);
+				System.out.println(price);
+				
 
 				amount = "" + Integer.parseInt(quantity) * Integer.parseInt(price);
 				total += Integer.parseInt(amount);

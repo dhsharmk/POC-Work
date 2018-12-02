@@ -16,6 +16,9 @@
 <!-- Material Design Bootstrap -->
 <link href="assets/css/mdb.min.css" rel="stylesheet">
 <!-- Your custom styles (optional) -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+ 
 <link href="assets/css/styles.css" rel="stylesheet">
 <title>Items Preview</title>
 </head>
@@ -24,7 +27,7 @@
 	<jsp:include page="side-nav.html" />
 	<div class="container">
 		<form action="ItemController" method="POST">
-			<table class="table">
+			<table class="table" id="table">
 				<tr>
 					<th>S No.</th>
 					<th>Stuff</th>
@@ -38,7 +41,7 @@
 					<td><button type="button" id="addrow" class="btn btn-primary">Add
 							row</button></td>
 					<td>Total</td>
-					<td id="total">0</td>
+					<td id="total"><%=request.getAttribute("TOTAL_AMOUNT")%></td>
 					<td><button type="button" id="reload">
 							<i class="fa fa-refresh" aria-hidden="true"></i>
 						</button></td>
@@ -57,10 +60,10 @@
 				<input type="text" class="form-control my-1" name="customerName" placeholder="Customer's Name">
 				<input type="text" class="form-control my-1" name="customerMobile" placeholder="Customer's Mobile Number">
 				<%} %>
-				<input type="text" class="form-control my-1" name="input-items" id="input-items" placeholder="Enter here">
+				<input type="hidden" class="form-control my-1" name="input-items" id="input-items" placeholder="Enter here" value=""> 
 				<input type="number" name="paid" placeholder="Paid Amount" class="form-control" required>
 			</div>
-			<button class="btn btn-primary my-2" type="submit">Save</button>
+			<button class="btn btn-primary my-2" id="save" type="submit">Save</button>
 		</form>
 
 		<button onclick="window.location.href='dashboard.jsp'; return false;"
@@ -77,6 +80,20 @@
 	<!-- MDB core JavaScript -->
 	<script type="text/javascript" src="assets/js/mdb.min.js"></script>
 	<script type="text/javascript" src="assets/js/preview-items.js"></script>
+	
+	
+	<script type="text/javascript">
+	function SpeechToInput(temp){
+	var itemsArray =  [];
+	itemsArray= temp.split(" ");
+
+		document.querySelector("#" + st).value = itemsArray[0];
+		document.querySelector("#" + qc).value = itemsArray[1];
+		document.querySelector("#" + un).value = itemsArray[2];
+		document.querySelector("#" + pc).value = itemsArray[3];
+	}
+	</script>
+	
 </body>
 
 </html>

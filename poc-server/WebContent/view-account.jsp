@@ -46,6 +46,8 @@
 		</table>
 		<button onclick="window.location.href='dashboard.jsp'; return false;"
 			class="btn btn-primary">Back</button>
+			<button type="button" id= "share" class="btn btn-block btn-deep-orange waves-effect waves-light mt-1"><i class="fa fa-whatsapp" aria-hidden="true"></i>
+								SHARE</button>
 	</div>
 
 	<!-- SCRIPTS -->
@@ -57,6 +59,7 @@
 	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 	<!-- MDB core JavaScript -->
 	<script type="text/javascript" src="assets/js/mdb.min.js"></script>
+	<script type="text/javascript" src="assets/js/sharedata.js"></script>
 </body>
 </html>
 
