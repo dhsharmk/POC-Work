@@ -51,7 +51,7 @@ public class ItemDbUtil {
 			myConn = dataSource.getConnection();
 
 			// create sql for insert
-			String sql = "insert into items (user, cname, cmob, unit, quantity, stuff, price) values (?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into items (user, cname, cmob, unit, quantity, stuff, price, rate) values (?, ?, ?, ?, ?, ?, ?, ?)";
 
 			myStmt = myConn.prepareStatement(sql);
 
@@ -63,6 +63,7 @@ public class ItemDbUtil {
 			myStmt.setString(5, theItem.getQuantity());
 			myStmt.setString(6, theItem.getStuff());
 			myStmt.setString(7, theItem.getPrice());
+			myStmt.setString(8, theItem.getRate());
 
 			// execute sql insert
 			myStmt.execute();

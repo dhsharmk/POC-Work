@@ -33,6 +33,7 @@
 					<th>Stuff</th>
 					<th>Quantity</th>
 					<th>Unit</th>
+					<th>Rate</th>
 					<th>Price</th>
 				</tr>
 			</table> 
@@ -90,7 +91,8 @@
 		document.querySelector("#" + st).value = itemsArray[0];
 		document.querySelector("#" + qc).value = itemsArray[1];
 		document.querySelector("#" + un).value = itemsArray[2];
-		document.querySelector("#" + pc).value = itemsArray[3];
+		document.querySelector("#" + rp).value = itemsArray[3];
+		document.querySelector("#" + pc).value = itemsArray[4];
 	}
 	</script>
 	

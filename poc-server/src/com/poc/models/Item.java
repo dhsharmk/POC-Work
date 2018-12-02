@@ -8,15 +8,17 @@ public class Item {
 	private String quantity;
 	private String stuff;
 	private String price;
+	private String rate;
 	private String time;
 	private String outstanding;
 	
-	public Item(String user, String quantity, String unit, String stuff, String time) {
+	public Item(String user, String quantity, String unit, String stuff, String time, String rate) {
 		this.user = user;
 		this.unit = unit;
 		this.quantity = quantity;
 		this.stuff = stuff;
 		this.time = time;
+		this.rate = rate;
 	}
 	
 	public Item(String user, String cname, String cmob, String outstanding) {
@@ -27,7 +29,7 @@ public class Item {
 		this.outstanding = outstanding;
 	}
 
-	public Item(String cname, String cmob, String unit, String quantity, String stuff, String price) {
+	public Item(String cname, String cmob, String unit, String quantity, String stuff, String price, String rate) {
 		super();
 		this.cname = cname;
 		this.cmob = cmob;
@@ -35,9 +37,10 @@ public class Item {
 		this.quantity = quantity;
 		this.stuff = stuff;
 		this.price = price;
+		this.rate = rate;
 	}
 
-	public Item(String user, String cname, String cmob, String unit, String quantity, String stuff, String price) {
+	public Item(String user, String cname, String cmob, String unit, String quantity, String stuff, String price, String rate) {
 		super();
 		this.user = user;
 		this.cname = cname;
@@ -46,6 +49,7 @@ public class Item {
 		this.quantity = quantity;
 		this.stuff = stuff;
 		this.price = price;
+		this.rate = rate;
 	}
 
 	public String getCname() {
@@ -102,6 +106,14 @@ public class Item {
 
 	public void setPrice(String price) {
 		this.price = price;
+	}
+	
+	public String getRate() {
+		return rate;
+	}
+
+	public void setRate(String rate) {
+		this.rate = rate;
 	}
 
 	public String getTime() {

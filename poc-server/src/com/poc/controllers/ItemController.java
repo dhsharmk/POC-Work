@@ -144,7 +144,7 @@ public class ItemController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String user = (String) session.getAttribute("CURRENT_USER_EMAIL");
 
-		String stuff = null, quantity = null, unit = null, price = null, sc = null, qc = null, uc = null, pc = null;
+		String stuff = null, quantity = null, unit = null, rate = null,  price = null, sc = null, qc = null, uc = null, rp = null, pc = null;
 
 		// convert items to array
 	  //  String[] itemsArray = handleRupeesSymbol(items);
@@ -155,21 +155,23 @@ public class ItemController extends HttpServlet {
 				sc = "stuff" + j;
 				qc = "quantity" + j;
 				uc = "unit" + j;
+				rp = "rate" + j;
 				pc = "price" + j;
 				j++;
 				stuff = request.getParameter(sc);
 				quantity = request.getParameter(qc);
 				unit = request.getParameter(uc);
+				rate = request.getParameter(rp);
 				price = request.getParameter(pc);
-				if (price.contains("&#8377;")) 
-				price = (price.split("&#8377;")[1]);
-				System.out.println(price);
+				if (rate.contains("&#8377;")) 
+				rate = (rate.split("&#8377;")[1]);
+				System.out.println(rate);
 				
+				price = "" + Integer.parseInt(quantity) * Integer.parseInt(rate);
+				//amount = "" + Integer.parseInt(quantity) * Integer.parseInt(rate);
+				total += Integer.parseInt(price);
 
-				amount = "" + Integer.parseInt(quantity) * Integer.parseInt(price);
-				total += Integer.parseInt(amount);
-
-				item = new Item(user, cname, cmob, unit, quantity, stuff, price);
+				item = new Item(user, cname, cmob, unit, quantity, stuff, price, rate);
 
 				// add the User to the database
 				ItemDbUtil.addItems(item);
